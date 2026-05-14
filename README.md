@@ -273,7 +273,7 @@ Block Kali Attacker
 
 This step represents a simple incident response measure after identifying a suspicious host in the lab environment.
 
-![Firewall Scope - Kali Attacker IP](screenshots/13-firewall-scope-kali-ip.png)
+![Firewall Scope - Kali Attacker IP](screenshots/13-firewall-scope-kali-ip.png.png)
 
 ![Firewall Action - Block the Connection](screenshots/14-firewall-block-action.png)
 
