@@ -47,7 +47,7 @@ Its IP address was:
 192.168.56.103
 ```
 
-![Kali Attacker IP](images/03-kali-attacker-ip.png)
+![Kali Attacker IP](screenshots/03-kali-attacker-ip.png)
 
 ---
 
@@ -65,7 +65,7 @@ OnePiece
 zoro
 ```
 
-![Password List](images/04-password-list.png)
+![Password List](screenshots/04-password-list.png)
 
 ---
 
@@ -81,7 +81,7 @@ The Windows target IP address was:
 
 Several password attempts failed before one valid credential successfully authenticated.
 
-![SMB Brute Force Attempts](images/05-smb-bruteforce-attempt.png)
+![SMB Brute Force Attempts](screenshots/05-smb-bruteforce-attempt.png)
 
 ---
 
@@ -94,7 +94,7 @@ This confirmed that the simulation produced both:
 - Multiple failed authentication attempts
 - One successful authentication after the failed attempts
 
-![SMB Login Success](images/06-smb-login-success.png)
+![SMB Login Success](screenshots/06-smb-login-success.png)
 
 ---
 
@@ -110,7 +110,7 @@ index=* "failed to log on"
 
 This search returned multiple failed logon events generated during the brute force simulation.
 
-![Failed Logons in Splunk](images/07-splunk-failed-logons.png)
+![Failed Logons in Splunk](screenshots/07-splunk-failed-logons.png)
 
 ---
 
@@ -144,7 +144,7 @@ Workstation_Name: KALI
 - `Source_Network_Address` identifies the IP address where the attempt originated.
 - `Workstation_Name: KALI` confirms the activity came from the Kali Linux VM.
 
-![Event ID 4625 Details](images/08-event-4625-details.png)
+![Event ID 4625 Details](screenshots/08-event-4625-details.png)
 
 ---
 
@@ -160,7 +160,7 @@ The attacker IP address identified in the logs was:
 
 This matched the IP address previously confirmed on the Kali Linux attacker VM.
 
-![Source IP Analysis](images/09-source-ip-analysis.png)
+![Source IP Analysis](screenshots/09-source-ip-analysis.png)
 
 ---
 
@@ -174,7 +174,7 @@ index=* "an account was successfully logged on"
 
 This search identified a successful authentication event that occurred after the failed attempts.
 
-![Successful Logon Search](images/10-successful-logon-4624.png)
+![Successful Logon Search](screenshots/10-successful-logon-4624.png)
 
 ---
 
@@ -235,7 +235,7 @@ A Splunk alert was created to identify possible brute force activity based on re
 Possible brute force - failed logons
 ```
 
-![Alert Creation](images/11-alert-creation.png)
+![Alert Creation](screenshots/11-alert-creation.png)
 
 ---
 
@@ -257,7 +257,7 @@ High
 
 This means the alert would fire when Splunk detects more than five matching failed login events within the configured time window.
 
-![Alert Trigger Configuration](images/12-alert-trigger-condition.png)
+![Alert Trigger Configuration](screenshots/12-alert-trigger-condition.png)
 
 ---
 
@@ -273,7 +273,11 @@ Block Kali Attacker
 
 This step represents a simple incident response measure after identifying a suspicious host in the lab environment.
 
-![Firewall Blocking Rule](images/13-firewall-block-rule.png)
+![Firewall Scope - Kali Attacker IP](screenshots/13-firewall-scope-kali-ip.png)
+
+![Firewall Action - Block the Connection](screenshots/14-firewall-block-action.png)
+
+![Firewall Rule Name](screenshots/15-firewall-rule-name.png)
 
 ---
 
