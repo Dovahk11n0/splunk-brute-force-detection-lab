@@ -1,0 +1,7 @@
+relative_time,event_type,event_code,src_ip,target_account,logon_type,details
+T+0:00,FAILED_LOGON,4625,192.168.56.103,GoldRoguer,3,Failure_Reason: Unknown user name or bad password
+T+0:12,FAILED_LOGON,4625,192.168.56.103,GoldRoguer,3,Failure_Reason: Unknown user name or bad password
+T+0:24,FAILED_LOGON,4625,192.168.56.103,GoldRoguer,3,Failure_Reason: Unknown user name or bad password
+T+0:31,FAILED_LOGON,4625,192.168.56.103,GoldRoguer,3,Failure_Reason: Unknown user name or bad password
+T+0:38,SUCCESSFUL_LOGON,4624,192.168.56.103,GoldRoguer,3,Authentication successful after 4 failures
+T+0:45,CONTAINMENT,N/A,N/A,N/A,N/A,Firewall rule created blocking 192.168.56.103
