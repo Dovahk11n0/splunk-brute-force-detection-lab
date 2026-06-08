@@ -1,0 +1,6 @@
+index=wineventlog EventCode=4625
+| eval src_ip=coalesce(Source_Network_Address, src_ip)
+| search src_ip="192.168.56.103"
+| stats count AS failed_attempts BY src_ip, Account_Name, Logon_Type, Failure_Reason
+| where failed_attempts >= 3
+| sort -failed_attempts
