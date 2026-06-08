@@ -1,0 +1,5 @@
+ioc_type,value,context,confidence
+ip_address,192.168.56.103,Brute force source - Kali VM,High
+hostname,KALI,Workstation name in 4625/4624 events,High
+account,GoldRoguer,Targeted account - successful logon confirmed,High
+event_pattern,4625 x4 + 4624 from same IP,Brute force with success indicator,High
