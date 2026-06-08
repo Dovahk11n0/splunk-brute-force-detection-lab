@@ -334,3 +334,21 @@ This step represents a simple incident response measure after identifying a susp
 This lab demonstrated how a brute force authentication attempt can be simulated, detected, investigated, and partially contained using Splunk and Windows Security logs.
 
 By reviewing repeated Event ID 4625 failed logon events, identifying the attacker IP address, correlating the activity with a later Event ID 4624 successful logon, and creating a Splunk alert, the lab reproduced a realistic SOC workflow for investigating suspicious authentication activity.
+
+## MITRE ATT&CK Mapping
+
+| Technique | ID | Observed Behavior |
+|---|---|---|
+| Brute Force | T1110 | Repeated EventCode 4625 failures from single source IP over SMB |
+| Valid Accounts | T1078 | EventCode 4624 confirmed attacker successfully authenticated with valid credentials |
+| Remote Services: SMB/Windows Admin Shares | T1021.002 | Logon_Type 3 confirms network-based SMB authentication attempt |
+
+## Lessons Learned
+
+**What worked:** Correlating EventCode 4625 → 4624 from the same source IP is the clearest signal for confirmed brute force. The `Workstation_Name: KALI` field provided secondary confirmation of the source without needing network logs.
+
+**What I would improve:** The initial search used `index=* "failed to log on"` (text search) which is slow and fragile. The refactored SPL in `queries/splunk/` uses `EventCode=4625` directly with field-based aggregation — faster, more precise, and compatible with proper Splunk indexing.
+
+**Real-world gap identified:** In production, the alert threshold should be tuned per environment baseline. An account that normally fails 0 times vs one that admins reset frequently have different normal failure rates. Static thresholds of 5 work in labs but need dynamic baselining in production.
+
+**Detection gap:** This lab only covers SMB (Logon_Type 3). A complete brute force detection strategy should also cover RDP (Logon_Type 10) and local interactive logons (Logon_Type 2).
