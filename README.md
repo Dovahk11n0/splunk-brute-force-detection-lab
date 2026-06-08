@@ -1,3 +1,24 @@
+---
+title: SMB Brute Force Detection Lab
+stack:
+  - Windows 10
+  - Kali Linux
+  - Splunk Enterprise
+  - Windows Security Logs
+difficulty: beginner-intermediate
+estimated_time: 3-4 hours
+status: complete
+focus:
+  - authentication triage
+  - SPL query development
+  - Splunk alerting
+  - incident response documentation
+mitre_attack:
+  - T1110
+  - T1078
+  - T1021.002
+---
+
 # Brute Force Attack Detection Lab Using Splunk
 
 ## Overview
