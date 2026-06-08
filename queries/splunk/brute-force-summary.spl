@@ -1,0 +1,17 @@
+index=wineventlog EventCode IN (4624, 4625)
+| eval src_ip=coalesce(Source_Network_Address, src_ip)
+| eval event_type=case(
+    EventCode=4625, "FAILED_LOGON",
+    EventCode=4624, "SUCCESS_LOGON"
+  )
+| stats 
+    count(eval(event_type="FAILED_LOGON")) AS failures
+    count(eval(event_type="SUCCESS_LOGON")) AS successes
+    values(Account_Name) AS accounts_targeted
+    min(_time) AS first_seen
+    max(_time) AS last_seen
+  BY src_ip
+| where failures >= 3
+| eval outcome=if(successes>0, "COMPROMISED", "ATTEMPTED_ONLY")
+| sort -failures
+| convert ctime(first_seen) ctime(last_seen)
