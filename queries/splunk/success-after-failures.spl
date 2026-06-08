@@ -1,0 +1,18 @@
+index=wineventlog EventCode=4625
+| eval src_ip=coalesce(Source_Network_Address, src_ip)
+| stats 
+    count AS failed_count 
+    min(_time) AS first_failure 
+    max(_time) AS last_failure 
+  BY src_ip, Account_Name
+| where failed_count >= 3
+| eval failure_window_seconds = last_failure - first_failure
+| join type=left src_ip, Account_Name
+    [search index=wineventlog EventCode=4624
+     | eval src_ip=coalesce(Source_Network_Address, src_ip)
+     | rename _time AS success_time
+     | table src_ip, Account_Name, success_time]
+| where isnotnull(success_time) AND success_time > last_failure
+| eval time_to_success_seconds = success_time - last_failure
+| table src_ip, Account_Name, failed_count, failure_window_seconds, last_failure, success_time, time_to_success_seconds
+| convert ctime(last_failure) ctime(success_time)
