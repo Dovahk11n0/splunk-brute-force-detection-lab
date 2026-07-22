@@ -21,6 +21,8 @@ mitre_attack:
 
 # Brute Force Attack Detection Lab Using Splunk
 
+Hands-on SOC lab built as part of my transition into cybersecurity, simulating a real brute-force attack end-to-end — from attack simulation to Splunk detection, MITRE ATT&CK mapping, alerting, and containment.
+
 ## Overview
 
 This lab simulates a brute force authentication attack from a Kali Linux machine against a Windows 10 target over SMB.  
@@ -352,3 +354,11 @@ By reviewing repeated Event ID 4625 failed logon events, identifying the attacke
 **Real-world gap identified:** In production, the alert threshold should be tuned per environment baseline. An account that normally fails 0 times vs one that admins reset frequently have different normal failure rates. Static thresholds of 5 work in labs but need dynamic baselining in production.
 
 **Detection gap:** This lab only covers SMB (Logon_Type 3). A complete brute force detection strategy should also cover RDP (Logon_Type 10) and local interactive logons (Logon_Type 2).
+
+---
+
+## Author
+
+**Diago Gonzalez**
+CompTIA Security+ | Google Cybersecurity Professional Certificate
+[LinkedIn](https://www.linkedin.com/in/diagogonz) | [GitHub](https://github.com/Dovahk11n0)
